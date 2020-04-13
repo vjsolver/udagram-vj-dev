@@ -1,5 +1,5 @@
 service:
-  name: udagram-vj
+  name: udagram-vj-2
 # app and org for use with dashboard.serverless.com
 #app: your-app-name
 #org: your-org-name
@@ -13,12 +13,12 @@ plugins:
 
 provider:
   name: aws
-  runtime: nodejs12.x
+  runtime: nodejs10.x
   region: ${opt:region, 'us-east-2'}
   stage: ${opt:stage, 'dev'}
 
   environment:
-    GROUPS_TABLE: Groups-${self:provider.stage}
+    GROUPS_TABLE: Groups-2-${self:provider.stage}
 
   iamRoleStatements:
     - Effect: Allow
@@ -52,7 +52,7 @@ functions:
 
 resources:
   Resources:
-    GroupsDynamoDBTable:
+    GroupsDynamoDBTable2:
       Type: AWS::DynamoDB::Table
       Properties:
         AttributeDefinitions:

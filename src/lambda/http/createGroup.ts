@@ -1,13 +1,11 @@
-import { APIGatewayAuthorizerHandler, APIGatewayProxyEvent, APIGatewayProxyCallback, APIGatewayProxyResult, APIGatewayProxyHandler } from "aws-lambda"
+import { APIGatewayAuthorizerHandler, APIGatewayProxyEvent, APIGatewayProxyCallback, APIGatewayProxyResult, APIGatewayProxyHandler } from 'aws-lambda'
 
 
 // import 'source-map-support/register'
 import * as AWS from 'aws-sdk'
-import * as uuid from 'uuid'
-import { v4 as uuid } from 'uuid';
 
-
-
+import { v4 as uuidv4 } from 'uuid';
+ 
 const docClient = new AWS.DynamoDB.DocumentClient()
 
 const groupsTable = process.env.GROUPS_TABLE
@@ -15,7 +13,7 @@ const groupsTable = process.env.GROUPS_TABLE
 export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
   console.log('Processing event: ', event)
 
-  const itemId = uuid.v4()
+  const itemId = uuidv4()
   console.log('uuid: ', itemId)
 
   let body = event.body
