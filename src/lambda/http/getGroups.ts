@@ -1,4 +1,4 @@
-import { APIGatewayAuthorizerHandler, APIGatewayProxyEvent, APIGatewayProxyCallback, APIGatewayProxyResult, APIGatewayProxyHandler } from "aws-lambda"
+import {  APIGatewayProxyEvent,  APIGatewayProxyResult, APIGatewayProxyHandler } from "aws-lambda"
 
 
 import * as AWS from 'aws-sdk'
