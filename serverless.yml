@@ -34,7 +34,7 @@ provider:
         - dynamodb:Query
         - dynamodb:PutItem
       Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.IMAGES_TABLE}
-      
+
     - Effect: Allow
       Action:
         - dynamodb:Query
@@ -98,7 +98,7 @@ functions:
     events:
       - http:
           method: post
-          path: group/{groupId}/image
+          path: groups/{groupId}/images
           cors: true
           reqValidatorName: RequestBodyValidator
           documentation:
@@ -106,7 +106,7 @@ functions:
             description: Create a new Image into group
             requestModels:
               'application/json': ImageRequest
-            
+
 
 resources:
   Resources:
@@ -146,7 +146,7 @@ resources:
                 KeyType: HASH
               - AttributeName: timestamp
                 KeyType: RANGE
-        GlobalSecondaryIndexes: 
+        GlobalSecondaryIndexes:
           - IndexName: ${self:provider.environment.IMAGE_ID_INDEX}
             KeySchema:
             - AttributeName: imageId
@@ -155,4 +155,4 @@ resources:
               ProjectionType: ALL
 
         BillingMode: PAY_PER_REQUEST
-        TableName: ${self:provider.environment.IMAGES_TABLE}        
+        TableName: ${self:provider.environment.IMAGES_TABLE}
